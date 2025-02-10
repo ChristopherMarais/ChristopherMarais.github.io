@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # or your default branch
+      - main  # Or your default branch
 
 jobs:
   deploy:
@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # or your preferred version
+          node-version: '16'  # Or your preferred version
 
       - name: Install Dependencies
         run: npm install
