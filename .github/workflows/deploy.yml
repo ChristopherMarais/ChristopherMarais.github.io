@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main  # This is the source branch where your code lives
+      
+# Add the permissions block here at the root level
+permissions:
+  contents: write
 
 jobs:
   deploy:
