@@ -3,7 +3,7 @@ name: Deploy Astro Site to GitHub Pages
 on:
   push:
     branches:
-      - main  # Trigger on pushes to main
+      - main  # This is the source branch where your code lives
 
 jobs:
   deploy:
@@ -18,13 +18,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22'  # Use your preferred Node.js version
+          node-version: '22'
 
       # 3. Install dependencies
       - name: Install dependencies
         run: npm ci
 
-      # 4. Build your Astro site (ensure your package.json has "build": "astro build")
+      # 4. Build your Astro site (make sure your package.json has "build": "astro build")
       - name: Build Astro site
         run: npm run build
 
@@ -36,11 +36,11 @@ jobs:
       - name: Create CNAME file
         run: echo "gcmarais.com" > dist/CNAME
 
-      # 7. Deploy the built site to main branch
+      # 7. Deploy the built site to the dedicated branch
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          publish_branch: main
+          publish_branch: gh-pages  # Updated to use a dedicated deployment branch
           cname: gcmarais.com
