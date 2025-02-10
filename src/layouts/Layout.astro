@@ -1,0 +1,66 @@
+---
+const { title, bodyClass, activePage } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title || "G. Christopher Marais"}</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class={bodyClass || ""}>
+    <!-- Header / Navigation -->
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="/"><h2>G. Christopher Marais</h2></a>
+        </div>
+        <nav>
+          <ul>
+            <li>
+              <a href="/" class={activePage === 'home' ? 'active' : ''}>Home</a>
+            </li>
+            <li>
+              <a href="/resume.html" class={activePage === 'resume' ? 'active' : ''}>Resume</a>
+            </li>
+            <li>
+              <a href="/gallery" class={activePage === 'gallery' ? 'active' : ''}>Gallery</a>
+            </li>
+            <li>
+              <a href="/contact.html" class={activePage === 'contact' ? 'active' : ''}>Contact</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main content area -->
+    <main class="container">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <nav class="footer-nav">
+          <ul>
+            <li>
+              <a href="/" class={activePage === 'home' ? 'active' : ''}>Home</a>
+            </li>
+            <li>
+              <a href="/resume.html" class={activePage === 'resume' ? 'active' : ''}>Resume</a>
+            </li>
+            <li>
+              <a href="/gallery" class={activePage === 'gallery' ? 'active' : ''}>Gallery</a>
+            </li>
+            <li>
+              <a href="/contact.html" class={activePage === 'contact' ? 'active' : ''}>Contact</a>
+            </li>
+          </ul>
+        </nav>
+        <p>&copy; 2025 G. Christopher Marais. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

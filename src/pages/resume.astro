@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "G. Christopher Marais - Resume";
+const activePage = "resume";
+---
+<Layout {title} activePage={activePage}>
+  <div class="pdf-container">
+    <!-- Embedding the CV PDF (located at /pdf/CV.pdf) -->
+    <embed src="/pdf/CV.pdf" type="application/pdf">
+  </div>
+  <!-- You can add a download button below if desired -->
+  <!-- <a href="/pdf/CV.pdf" download class="download-button">Download CV</a> -->
+</Layout>

@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "G. Christopher Marais - Home";
+const bodyClass = "home";
+const activePage = "home";  // This tells the layout to highlight the Home link.
+---
+<Layout {title} {bodyClass} {activePage}>
+  <!-- Chatbot Iframe
+  <iframe
+    class="iframe-container"
+    src="https://hf.space/embed/your-username/your-space"
+    title="Chatbot">
+  </iframe> -->
+
+  <section class="welcome-message">
+    <h1>Welcome to My Personal Website</h1>
+    <br><br>
+    <p class="lead">Stay tuned for updates in the next few weeks...</p>
+    <br><br>
+    <p class="cta">Feel free to <a href="contact.html" class="contact-link">contact</a> me or take a look at my <a href="resume.html" class="resume-link">resume</a> in the meantime.</p>
+  </section>
+</Layout>
