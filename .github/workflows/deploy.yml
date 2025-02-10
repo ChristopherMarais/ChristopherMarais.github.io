@@ -3,26 +3,36 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Or your default branch
+      - main  # Change this if your default branch is named differently
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
+      # Step 1: Check out the repository
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      # Step 2: Setup Node.js (use your preferred Node version)
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22'  # Or your preferred version
+          node-version: '22.13.1'  # You can change this to the version you need
 
+      # Step 3: Install dependencies using a clean install
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
+      # Step 4: Ensure the Astro CLI binary has execute permissions
+      - name: Fix Astro Binary Permissions
+        run: chmod +x ./node_modules/.bin/astro
+
+      # Step 5: Build your Astro site (this will include copying your public/ folder with the CNAME)
       - name: Build Astro Site
         run: npm run build
 
+      # Step 6: Deploy the built site (the contents of the dist folder) to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
