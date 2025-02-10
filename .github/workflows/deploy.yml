@@ -10,29 +10,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out the repository
+      # 1. Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Step 2: Setup Node.js (use your preferred Node version)
+      # 2. Setup Node.js (choose your preferred Node version)
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22.13.1'  # You can change this to the version you need
+          node-version: '16'  # Change this if needed
 
-      # Step 3: Install dependencies using a clean install
+      # 3. Install dependencies using a clean install
       - name: Install Dependencies
         run: npm ci
 
-      # Step 4: Ensure the Astro CLI binary has execute permissions
+      # 4. Fix the Astro binary permissions (resolves "Permission denied" issues)
       - name: Fix Astro Binary Permissions
         run: chmod +x ./node_modules/.bin/astro
 
-      # Step 5: Build your Astro site (this will include copying your public/ folder with the CNAME)
+      # 5. Build your Astro site (this will also copy your public/ folder including any CNAME file)
       - name: Build Astro Site
         run: npm run build
 
-      # Step 6: Deploy the built site (the contents of the dist folder) to GitHub Pages
+      # 6. Create a .nojekyll file in the build output to disable GitHub Pages’ Jekyll processing
+      - name: Create .nojekyll file
+        run: echo > dist/.nojekyll
+
+      # 7. Deploy the built site to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
