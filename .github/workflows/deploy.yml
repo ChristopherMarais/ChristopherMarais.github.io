@@ -1,44 +1,45 @@
-name: Deploy to GitHub Pages
+name: Deploy Astro Site to GitHub Pages
 
 on:
   push:
     branches:
-      - main  # Change this if your default branch is named differently
+      - main  # Change this if you use a different branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout the repository
-      - name: Checkout Repository
+      # Step 1: Check out the repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Setup Node.js (choose your preferred Node version)
+      # Step 2: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22'  # Change this if needed
+          node-version: '22'  # Use your preferred Node.js version
 
-      # 3. Install dependencies using a clean install
-      - name: Install Dependencies
+      # Step 3: Install dependencies
+      - name: Install dependencies
         run: npm ci
 
-      # 4. Fix the Astro binary permissions (resolves "Permission denied" issues)
-      - name: Fix Astro Binary Permissions
-        run: chmod +x ./node_modules/.bin/astro
-
-      # 5. Build your Astro site (this will also copy your public/ folder including any CNAME file)
-      - name: Build Astro Site
+      # Step 4: Build your Astro site
+      - name: Build Astro site
         run: npm run build
 
-      # 6. Create a .nojekyll file in the build output to disable GitHub Pages’ Jekyll processing
-      - name: Create .nojekyll file
-        run: echo > dist/.nojekyll
+      # Step 5: Add .nojekyll to disable Jekyll processing on GitHub Pages
+      - name: Add .nojekyll file
+        run: touch dist/.nojekyll
 
-      # 7. Deploy the built site to GitHub Pages
+      # Step 6: Create CNAME file for your custom domain
+      - name: Create CNAME file
+        run: echo "gcmarais.com" > dist/CNAME
+
+      # Step 7: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          cname: gcmarais.com
