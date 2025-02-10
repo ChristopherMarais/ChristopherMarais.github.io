@@ -18,7 +18,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Change this if needed
+          node-version: '22'  # Change this if needed
 
       # 3. Install dependencies using a clean install
       - name: Install Dependencies
