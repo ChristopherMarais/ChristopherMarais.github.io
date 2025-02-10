@@ -1,118 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Your Name - Gallery</title>
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    /* Basic reset and styling */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      background-color: #f5f5f5;
-      color: #333;
-      line-height: 1.6;
-    }
-    header {
-      background-color: #222;
-      padding: 15px 0;
-      text-align: center;
-    }
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-    }
-    nav ul li {
-      margin: 0 10px;
-    }
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      padding: 8px 12px;
-      transition: background 0.3s;
-    }
-    nav ul li a:hover {
-      background-color: #333;
-      border-radius: 4px;
-    }
-    main {
-      padding: 40px 0;
-    }
-    main h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 2.5em;
-    }
-    main p {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .gallery-full {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .gallery-full img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      transition: transform 0.3s;
-    }
-    .gallery-full img:hover {
-      transform: scale(1.05);
-    }
-    footer {
-      background-color: #222;
-      color: #fff;
-      text-align: center;
-      padding: 15px 0;
-      font-size: 0.9em;
-    }
-    footer a {
-      color: #e8491d;
-      text-decoration: none;
-    }
-  </style>
 </head>
 <body>
   <!-- Header / Navigation -->
   <header>
     <div class="container">
-      <h2>Your Name</h2>
+      <div class="logo">
+        <h2>Your Name</h2>
+      </div>
       <nav>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="resume.html">Resume</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="gallery.html" class="active">Gallery</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- Main Gallery Content -->
+  <!-- Main Content: Gallery -->
   <main class="container">
-    <h1>Gallery</h1>
-    <p>Here is a full gallery of my images.</p>
+    <h1>My Photos</h1>
+    <p>Here is a collection of my images.</p>
     <div class="gallery-full">
-      <!-- Replace these with your full gallery images -->
-      <img src="images/gallery1.jpg" alt="Gallery Image 1">
-      <img src="images/gallery2.jpg" alt="Gallery Image 2">
-      <img src="images/gallery3.jpg" alt="Gallery Image 3">
-      <img src="images/gallery4.jpg" alt="Gallery Image 4">
-      <img src="images/gallery5.jpg" alt="Gallery Image 5">
-      <img src="images/gallery6.jpg" alt="Gallery Image 6">
+      <!-- Displaying images from the images folder (ensure your images follow this naming pattern) -->
+      <img src="images/914293_1474380416112553_74451078_n_17843543350063965.jpg" alt="Image 1">
+      <img src="images/image2.jpg" alt="Image 2">
+      <img src="images/image3.jpg" alt="Image 3">
+      <img src="images/image4.jpg" alt="Image 4">
+      <img src="images/image5.jpg" alt="Image 5">
+      <img src="images/image6.jpg" alt="Image 6">
+      <!-- Add additional images as needed -->
     </div>
   </main>
 
