@@ -7,23 +7,21 @@ const activePage = "home";
 ---
 
 <Layout {title} {bodyClass} {activePage}>
-  <section class="welcome-message">
-    <h1>Welcome to My Personal Website</h1>
-
-    <!-- Embed Hugging Face Space using the Gradio Web Component -->
-    <script
-      type="module"
-      src="https://gradio.s3-us-west-2.amazonaws.com/5.16.0/gradio.js"
-    ></script>
-    <div style="margin: 0 auto; width: 100%; display: flex; justify-content: center;">
-      <gradio-app 
-        style="width: 100%; height: auto; max-width: 100%;" 
-        src="https://christophermarais-amabot.hf.space">
-      </gradio-app>
+  <section class="welcome-message" style="text-align: center;">
+    <br><br>
+    <h1>Welcome!</h1>
+    <p class="lead">Feel free to ask AMAbot anything about Christopher.</p>
+    
+    <!-- Embed an additional iframe below the Gradio app -->
+    <div style="display: flex; justify-content: center; width: 100%;">
+      <iframe
+        src="https://christophermarais-amabot.hf.space"
+        frameborder="0"
+        style="width: 100%; max-width: 1200px; height: 500px;">
+      </iframe>
     </div>
 
-    <br><br>
-    <p class="lead">Stay tuned for updates, this website is under construction...</p>
+    <p class="lead">Stay tuned for updates, this website (including AMAbot) is still under construction...</p>
     <br><br>
   </section>
 </Layout>

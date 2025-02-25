@@ -13,6 +13,7 @@
     --link-color: var(--primary-color);
     --font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
     --transition-speed: 0.3s;
+    --color-scheme: light;
 }
   
 /* Basic Reset */
@@ -41,17 +42,35 @@ body {
 /* Header */
 header {
     background-color: var(--header-bg);
-    padding: 20px 0;
+    padding: 10px 0;
 }
 header .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
+.home-link {
+    display: inline-flex; /* or flex */
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.home-icon {
+    width: 100px;  /* or any desired width */
+    height: auto; /* keeps the natural aspect ratio */
+    margin-right: 0.5rem;
+}
+
+.home-link h2 {
+    margin: 0;
+    display: inline; /* prevents h2 from taking up a full line */
+}
   
 /* Logo styling with clickable link */
 .logo h2 {
-    font-size: 1.8em;
+    font-size: 2.2em;
     margin: 0;
 }
 .logo a {
@@ -92,6 +111,14 @@ nav ul li a.active {
 main {
     padding: 40px 0;
 }
+
+main.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }  
   
 /* Home Page Specific */
 .home main {
@@ -101,21 +128,13 @@ main {
     /* Adjust min-height to fill most of the viewport minus header and footer */
     min-height: calc(100vh - 160px);
 }
-.iframe-container {
-    width: 100%;
-    max-width: 800px;
-    height: 500px; /* Reduced height to minimize scrolling */
-    border: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-  
+
 /* PDF Container (for Resume/CV display) */
 .pdf-container {
     margin: 20px auto;
     width: 100%;
     max-width: 800px;
-    height: 600px;
+    height: 1100px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
@@ -171,6 +190,15 @@ main {
 .contact-info p {
     margin-bottom: 10px;
     font-size: 1.1em;
+}
+
+.profile-image {
+    width: 150px; /* adjust the size as needed */
+    height: 150px; /* ensure the height is equal to the width for a circle */
+    border-radius: 50%; /* makes the image circular */
+    object-fit: cover; /* ensures the image fills the container without distortion */
+    display: block;
+    margin: 1rem auto; /* centers the image horizontally */
 }
   
 /* Additional resume embed section on contact page */
@@ -228,6 +256,12 @@ footer .container {
 .footer-nav li a.active {
     background-color: #333;
     color: #fff;
+}
+
+/* Override for Gradio example row to force full width */
+gradio-app .example-row {
+    flex-grow: 1 !important;
+    width: 100% !important;
 }
   
 /* Responsive Adjustments */
