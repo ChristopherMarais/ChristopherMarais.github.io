@@ -2,26 +2,39 @@
 import Layout from '../layouts/Layout.astro';
 
 const title = "G. Christopher Marais - Home";
-const bodyClass = "home";
+// Update the bodyClass to include "gradio-embed" so the CSS override applies:
+const bodyClass = "home gradio-embed";
 const activePage = "home";
 ---
 
 <Layout {title} {bodyClass} {activePage}>
   <section class="welcome-message" style="text-align: center;">
-    <br><br>
-    <h1>Welcome!</h1>
-    <p class="lead">Feel free to ask AMAbot anything about Christopher.</p>
-    
+    <h1>Hello and Welcome!</h1>
+    <img
+    src="/page_images/profile_picture.jpg"
+    alt="G. Christopher Marais"
+    class="profile-image"
+    />
+    <p class="lead">
+      
+      I'm Christopher Marais, and this is my little corner of the web where I share some of my projects and ideas. 
+      It is a continuous work in progress, filled with some of my experiences and memories.
+      <br>
+      <br>
+      Below is a small language model (AMAbot) that's slowly learning all about me. 
+      This model is here to help answer any questions you might have about my work, my interests, or my background. 
+      <br>
+      (It's currently running on a CPU and might be a bit slow at times).
+      <br>
+      <br>
+      Thank you for stopping by!
+    </p>
     <!-- Embed an additional iframe below the Gradio app -->
-    <div style="display: flex; justify-content: center; width: 100%;">
+    <div class="iframe-wrapper">
       <iframe
         src="https://christophermarais-amabot.hf.space"
-        frameborder="0"
-        style="width: 100%; max-width: 1200px; height: 500px;">
+        frameborder="0">
       </iframe>
     </div>
-
-    <p class="lead">Stay tuned for updates, this website (including AMAbot) is still under construction...</p>
-    <br><br>
   </section>
 </Layout>

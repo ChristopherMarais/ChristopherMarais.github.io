@@ -30,7 +30,7 @@ body {
     color: var(--text-color);
     line-height: 1.6;
 }
-  
+
 /* Container */
 .container {
     width: 90%;
@@ -110,6 +110,7 @@ nav ul li a.active {
 /* Main Content */
 main {
     padding: 40px 0;
+    flex: 1;
 }
 
 main.container {
@@ -123,11 +124,26 @@ main.container {
 /* Home Page Specific */
 .home main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     /* Adjust min-height to fill most of the viewport minus header and footer */
-    min-height: calc(100vh - 160px);
 }
+
+.iframe-wrapper {
+    width: 70vw;  /* % of the viewport width */
+    height: 550px;
+    border: none;
+    margin: 0 auto;  /* Centers horizontally */
+    border: none;
+  }
+  
+  .iframe-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    margin: 0 auto;
+  }
 
 /* PDF Container (for Resume/CV display) */
 .pdf-container {
@@ -193,8 +209,8 @@ main.container {
 }
 
 .profile-image {
-    width: 150px; /* adjust the size as needed */
-    height: 150px; /* ensure the height is equal to the width for a circle */
+    width: 300px; /* adjust the size as needed */
+    height: 300px; /* ensure the height is equal to the width for a circle */
     border-radius: 50%; /* makes the image circular */
     object-fit: cover; /* ensures the image fills the container without distortion */
     display: block;
@@ -263,6 +279,7 @@ gradio-app .example-row {
     flex-grow: 1 !important;
     width: 100% !important;
 }
+
   
 /* Responsive Adjustments */
 @media (max-width: 768px) {
