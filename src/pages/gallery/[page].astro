@@ -2,9 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { getImagesInfo } from '../../utils/getImagesInfo';
 
-// Generate static paths for each gallery page.
 export async function getStaticPaths() {
-  // Define rootDirectory inside getStaticPaths so it's available here.
   const rootDirectory = Astro.root ?? process.cwd();
   const { totalPages } = getImagesInfo(rootDirectory);
   return Array.from({ length: totalPages }, (_, i) => ({
@@ -12,22 +10,19 @@ export async function getStaticPaths() {
   }));
 }
 
-// In the main code, define rootDirectory again.
 const rootDirectory = Astro.root ?? process.cwd();
 const { files, perPage, totalPages } = getImagesInfo(rootDirectory);
-
-// Retrieve the current page number from URL parameters.
 const { page } = Astro.params;
 const currentPage = parseInt(page, 10);
-
-// Determine which images to show on this page.
 const start = (currentPage - 1) * perPage;
 const images = files.slice(start, start + perPage);
 ---
 
 <Layout title={`Gallery - Page ${currentPage}`} activePage="gallery">
+  <br>
+  <br>
   <h1>My Photos - Page {currentPage}</h1>
-  <p>Here is a collection of pictures I have taken over the years to record my memories, experiences and travels.</p>
+  <p>Here are pictures I have enjoyed taking over the years to record my memories, experiences and travels.</p>
   <br>
   <br>
   <nav class="pagination">
@@ -52,7 +47,7 @@ const images = files.slice(start, start + perPage);
 
   <div class="gallery-full">
     {images.map((image) => (
-      <img src={`/images/${image}`} alt="Gallery image" loading="lazy" />
+      <img src={`/images/${image}`} alt="Gallery image" loading="lazy" class="clickable" />
     ))}
   </div>
   
@@ -76,4 +71,36 @@ const images = files.slice(start, start + perPage);
       <a href={`/gallery/${currentPage + 1}`}>Next &raquo;</a>
     )}
   </nav>
+
+  <!-- Modal for Enlarged Image -->
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-img" alt="" src=""/>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const modal = document.getElementById("modal");
+      const modalImg = document.getElementById("modal-img");
+      const closeBtn = document.querySelector(".close");
+
+      document.querySelectorAll('.gallery-full img.clickable').forEach(img => {
+        img.addEventListener('click', () => {
+          modal.style.display = "flex"; // Use flex to center the content
+          modalImg.src = img.src;
+        });
+      });
+
+      closeBtn.addEventListener('click', () => {
+        modal.style.display = "none";
+      });
+
+      // Close modal when clicking outside the image
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+    });
+  </script>
 </Layout>

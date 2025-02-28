@@ -14,7 +14,7 @@ export function getImagesInfo(root = process.cwd()) {
   files.sort();
   
   // Set the number of images per page.
-  const perPage = 50;
+  const perPage = 48;
   const totalPages = Math.ceil(files.length / perPage);
   
   return { files, perPage, totalPages };
