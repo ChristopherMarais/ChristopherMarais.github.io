@@ -28,7 +28,28 @@ const images = files.slice(start, start + perPage);
 <Layout title={`Gallery - Page ${currentPage}`} activePage="gallery">
   <h1>My Photos - Page {currentPage}</h1>
   <p>Here is a collection of pictures I have taken over the years to record my memories, experiences and travels.</p>
-  
+  <br>
+  <br>
+  <nav class="pagination">
+    {currentPage > 1 && (
+      <a href={`/gallery/${currentPage - 1}`}>&laquo; Previous</a>
+    )}
+    {Array.from({ length: totalPages }, (_, i) => {
+      const pageNum = i + 1;
+      return (
+        <a
+          href={`/gallery/${pageNum}`}
+          class={pageNum === currentPage ? 'active' : ''}
+        >
+          {pageNum}
+        </a>
+      );
+    })}
+    {currentPage < totalPages && (
+      <a href={`/gallery/${currentPage + 1}`}>Next &raquo;</a>
+    )}
+  </nav>
+
   <div class="gallery-full">
     {images.map((image) => (
       <img src={`/images/${image}`} alt="Gallery image" loading="lazy" />
