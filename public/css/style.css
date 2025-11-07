@@ -409,3 +409,70 @@ gradio-app .example-row {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+
+
+/* Main pagination container */
+.pagination {
+  display: flex;
+  justify-content: center; /* Center the buttons */
+  align-items: center;
+  gap: 10px; /* Adds space between each button */
+  margin: 2rem 0; /* Adds space above and below the pagination nav */
+  flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
+}
+
+/* Default style for all pagination links */
+.pagination a {
+  display: inline-block;
+  padding: 12px 18px; /* Makes the buttons larger */
+  text-decoration: none;
+  font-weight: 500;
+  color: #444; /* Dark grey text for standard buttons */
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  /* Matches the border-radius from your Welcome.astro component */
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Adds a subtle shadow */
+}
+
+/* Hover effect for non-active buttons */
+.pagination a:not(.active):hover {
+  border-color: #bbb;
+  transform: translateY(-2px); /* Lifts the button slightly */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Style for the "active" (current page) button */
+.pagination a.active {
+  color: white;
+  font-weight: bold;
+  /* Uses the gradient from your Welcome.astro component */
+  background: linear-gradient(83.21deg, #444 0%, #444 100%);
+  border-color: transparent;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Optional: Make Previous & Next links stand out */
+.pagination a[href*="Previous"],
+.pagination a[href*="Next"] {
+  font-weight: bold;
+  color: #111;
+}
+
+/* On hover, the active button shouldn't change */
+.pagination a.active:hover {
+  transform: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles the "..." in your pagination */
+.pagination span.ellipsis {
+  display: inline-block;
+  padding: 12px 18px; /* Match your link padding */
+  color: #999; /* A muted color */
+  background-color: #f4f4f4; /* Light grey background */
+  border: 1px solid #ddd;
+  border-radius: 10px; /* Match your link border-radius */
+  margin: 0 5px; /* Same as 'gap' for other elements */
+}

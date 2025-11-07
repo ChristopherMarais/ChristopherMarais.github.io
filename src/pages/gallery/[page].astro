@@ -10,12 +10,64 @@ export async function getStaticPaths() {
   }));
 }
 
+/**
+ * HELPER FUNCTION: Generates a smart pagination array.
+ * e.g., getPaginationNumbers(5, 10) => [1, '...', 4, 5, 6, '...', 10]
+ */
+function getPaginationNumbers(currentPage, totalPages, siblings = 1) {
+  if (totalPages <= 7) {
+    // If 7 or fewer pages, show all numbers
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
+  }
+
+  const firstPage = 1;
+  const lastPage = totalPages;
+
+  // Pages to show: first, last, current, and siblings
+  const pagesToShow = new Set([
+    firstPage,
+    lastPage,
+    currentPage,
+  ]);
+
+  for (let i = 1; i <= siblings; i++) {
+    if (currentPage - i > firstPage) {
+      pagesToShow.add(currentPage - i);
+    }
+    if (currentPage + i < lastPage) {
+      pagesToShow.add(currentPage + i);
+    }
+  }
+
+  // Convert Set to sorted array
+  const sortedPages = Array.from(pagesToShow).sort((a, b) => a - b);
+
+  // Add ellipses where there are gaps
+  const finalPages = [];
+  let lastAddedPage = 0;
+
+  for (const page of sortedPages) {
+    if (lastAddedPage !== 0 && page - lastAddedPage > 1) {
+      finalPages.push('...'); // Add ellipsis for the gap
+    }
+    finalPages.push(page);
+    lastAddedPage = page;
+  }
+
+  return finalPages;
+}
+
+// (Your existing variables are here)
 const rootDirectory = Astro.root ?? process.cwd();
 const { files, perPage, totalPages } = getImagesInfo(rootDirectory);
 const { page } = Astro.params;
 const currentPage = parseInt(page, 10);
 const start = (currentPage - 1) * perPage;
 const images = files.slice(start, start + perPage);
+
+// --- NEW VARIABLE ---
+// Generate the list of pages to display
+const paginationNumbers = getPaginationNumbers(currentPage, totalPages);
 ---
 
 <Layout title={`Gallery - Page ${currentPage}`} activePage="gallery">
@@ -29,8 +81,14 @@ const images = files.slice(start, start + perPage);
     {currentPage > 1 && (
       <a href={`/gallery/${currentPage - 1}`}>&laquo; Previous</a>
     )}
-    {Array.from({ length: totalPages }, (_, i) => {
-      const pageNum = i + 1;
+
+    {paginationNumbers.map((pageNum) => {
+      if (typeof pageNum === 'string') {
+        // This is an ellipsis "..."
+        return <span class="ellipsis">&hellip;</span>;
+      }
+
+      // This is a page number
       return (
         <a
           href={`/gallery/${pageNum}`}
@@ -40,6 +98,7 @@ const images = files.slice(start, start + perPage);
         </a>
       );
     })}
+
     {currentPage < totalPages && (
       <a href={`/gallery/${currentPage + 1}`}>Next &raquo;</a>
     )}
@@ -56,8 +115,14 @@ const images = files.slice(start, start + perPage);
     {currentPage > 1 && (
       <a href={`/gallery/${currentPage - 1}`}>&laquo; Previous</a>
     )}
-    {Array.from({ length: totalPages }, (_, i) => {
-      const pageNum = i + 1;
+
+    {paginationNumbers.map((pageNum) => {
+      if (typeof pageNum === 'string') {
+        // This is an ellipsis "..."
+        return <span class="ellipsis">&hellip;</span>;
+      }
+
+      // This is a page number
       return (
         <a
           href={`/gallery/${pageNum}`}
@@ -67,6 +132,7 @@ const images = files.slice(start, start + perPage);
         </a>
       );
     })}
+
     {currentPage < totalPages && (
       <a href={`/gallery/${currentPage + 1}`}>Next &raquo;</a>
     )}
